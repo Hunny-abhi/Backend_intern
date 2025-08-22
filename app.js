@@ -27,12 +27,9 @@ app.get("/api/v1/blogs/:id", async (req, res) => {
     const { id } = req.params;
 
     const blog = await Blog.findById(id);
-    console.log(blog);
-
     if (!blog) {
       return res.status(404).json({ message: `Blog not found` });
     }
-
     res.json(blog);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -55,23 +52,23 @@ app.post("/api/v1/blogs", async (req, res) => {
   }
 });
 
-// app.get("/api/v1/blogs/:id", async (req, res) => {
-//   try {
-//     const { id } = req.parsms;
+app.get("/api/v1/blogs/:id", async (req, res) => {
+  try {
+    const { id } = req.parsms;
 
-//     const blog = await Blog.findByIdAndDelete(id);
-//     if (!blog) {
-//       return res.status(404).json({ message: `blog not found` });
-//     }
-//     res.json({ message: `Blog deleted successfully` });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
+    const blog = await Blog.findByIdAndDelete(id);
+    if (!blog) {
+      return res.status(404).json({ message: `blog not found` });
+    }
+    res.json({ message: `Blog deleted successfully` });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 app.delete("/api/v1/blogs/:id", async (req, res) => {
   try {
-    const { id } = req.parsms;
+    const { id } = req.params;
 
     const blog = await Blog.findByIdAndDelete(id);
     if (!blog) {
