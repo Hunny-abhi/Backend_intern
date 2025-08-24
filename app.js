@@ -52,33 +52,33 @@ app.post("/api/v1/blogs", async (req, res) => {
   }
 });
 
-app.get("/api/v1/blogs/:id", async (req, res) => {
-  try {
-    const { id } = req.parsms;
-
-    const blog = await Blog.findByIdAndDelete(id);
-    if (!blog) {
-      return res.status(404).json({ message: `blog not found` });
-    }
-    res.json({ message: `Blog deleted successfully` });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// app.delete("/api/v1/blogs/:id", async (req, res) => {
+// app.get("/api/v1/blogs/:id", async (req, res) => {
 //   try {
-//     const { id } = req.params;
+//     const { id } = req.parsms;
 
 //     const blog = await Blog.findByIdAndDelete(id);
 //     if (!blog) {
 //       return res.status(404).json({ message: `blog not found` });
 //     }
-//     res.json(blog);
+//     res.json({ message: `Blog deleted successfully` });
 //   } catch (error) {
 //     res.status(500).json({ message: error.message });
 //   }
 // });
+
+app.delete("/api/v1/blogs/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const blog = await Blog.findByIdAndDelete(id);
+    if (!blog) {
+      return res.status(404).json({ message: `blog not found` });
+    }
+    res.json(blog);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 const PORT = process.env.PORT;
 const start = async function () {
