@@ -66,19 +66,19 @@ app.get("/api/v1/blogs/:id", async (req, res) => {
   }
 });
 
-app.delete("/api/v1/blogs/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
+// app.delete("/api/v1/blogs/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
 
-    const blog = await Blog.findByIdAndDelete(id);
-    if (!blog) {
-      return res.status(404).json({ message: `blog not found` });
-    }
-    res.json(blog);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+//     const blog = await Blog.findByIdAndDelete(id);
+//     if (!blog) {
+//       return res.status(404).json({ message: `blog not found` });
+//     }
+//     res.json(blog);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
 const PORT = process.env.PORT;
 const start = async function () {
@@ -89,7 +89,7 @@ const start = async function () {
       console.log(`Server is Listening on PORT ${PORT}...`);
     });
   } catch (error) {
-    console.log(error);
+    console.log("server error!!!");
   }
 };
 
